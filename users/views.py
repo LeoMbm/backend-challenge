@@ -4,5 +4,5 @@ from django.shortcuts import render
 
 # Create your views here.
 def getHome(request):
-    ctx = {'message': "hello world"}
-    return render(request, 'base.html')
+    ctx = {'message': "registration"}
+    return render(request, 'registration.html', ctx)
