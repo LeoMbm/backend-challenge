@@ -1,20 +1,17 @@
 import uuid
 from datetime import datetime
 
+from django.contrib.auth.models import PermissionsMixin, AbstractUser
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 
 
 # Create your models here.
-class App_User(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    email = models.EmailField(unique=True, null=False, blank=True)
-    username = models.CharField(max_length=30, unique=True, null=False,blank=True)
-    password = models.CharField(max_length=255, null=False, blank=True)
+class App_User(AbstractUser, PermissionsMixin):
     slug = models.SlugField(max_length=30, unique=True)
-    created_at = models.DateTimeField(default=timezone.now())
-    updated_at = models.DateTimeField(auto_now=True)
+    username = models.CharField(max_length=255, unique=True)
+    email = models.EmailField(max_length=255, unique=True)
 
     def __str__(self):
         return self.email
@@ -23,4 +20,3 @@ class App_User(models.Model):
         value = self.username
         self.slug = slugify(value, allow_unicode=True)
         super().save(*args, **kwargs)
-

@@ -4,5 +4,7 @@ from django.urls import path, include
 from users import views
 
 urlpatterns = [
-   path('registration/', views.getHome)
+   path('registration/', views.register),
+   path('/', views.getHome)
+
 ]
