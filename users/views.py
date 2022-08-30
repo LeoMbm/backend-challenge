@@ -7,7 +7,7 @@ from users.forms import RegistrationForm
 # Create your views here.
 def getHome(request):
     ctx = {'message': "registration"}
-    return render(request, 'registration.html', ctx)
+    return render(request, 'base.html', ctx)
 
 
 def register(request):
@@ -16,7 +16,7 @@ def register(request):
         form = RegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save(commit=True)
-            return redirect('/')
+            return redirect('/users/')
     else:
         form = RegistrationForm()
     return render(request, "registration.html", {"form": form, "message": 'Registration'})

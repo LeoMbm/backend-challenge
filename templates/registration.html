@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% load bootstrap %}
 {% block content %}
     <h1>Here is the {{ message }} page</h1>
-    <form class="register-form form-control" method="post">
+    <form class="register-form form-control" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-        {% crispy form %}
+        {{ form|bootstrap_horizontal:'col-lg-4' }}
         <button type="submit" class="register-submit btn btn-primary">Register</button>
         <p>Have an account ? Login <a href="/users/login">Here</a></p>
 
