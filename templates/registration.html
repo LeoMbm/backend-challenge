@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% load bootstrap %}
 {% block content %}
-    <h1>Here is the {{ message }} page</h1>
-    <form class="register-form form-control" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-        {{ form|bootstrap_horizontal:'col-lg-4' }}
-        <button type="submit" class="register-submit btn btn-primary">Register</button>
-        <p>Have an account ? Login <a href="/users/login">Here</a></p>
-
-    </form>
+    <h1 class="text-center">Hey ! Register your account here!</h1>
+    <div class="container">
+        <form class="register-form form-control-sm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <button type="submit" class="register-submit btn btn-primary">Register</button>
+            <p>Have an account ? Login <a href="/users/login">Here</a></p>
+        </form>
+    </div>
 {% endblock %}
