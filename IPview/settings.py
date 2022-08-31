@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-doco88a42y7nc(5dxen1pj()qv1(@p*p)3iz%s4e@8eq(*ipj6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
+    'logs.apps.LogsConfig',
     'bootstrapform',
-    'crispy_forms'
+    'crispy_forms',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -113,12 +115,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Brussels'
 
 USE_I18N = True
+USE_L10N = True
+USE_TZ = False
 
-USE_TZ = True
-
+DATE_FORMAT = 'j/m/Y'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
