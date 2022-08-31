@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
@@ -7,7 +7,7 @@ from users.forms import RegistrationForm, LoginForm
 
 # Create your views here.
 def getHome(request):
-    ctx = {'message': "registration"}
+    ctx = {'message': "home"}
     return render(request, 'home.html', ctx)
 
 
@@ -25,11 +25,25 @@ def registerPage(request):
 
 def loginPage(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = authenticate(request, email=email, password=password)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        print(user)
 
         if user is not None:
-            login(request, email)
-            redirect('/users/')
+            login(request, user)
+            return redirect('/users/')
+        else:
+            return redirect('/users/registration/')
     return render(request, "login.html")
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/users/')
+
+
+def error_404_view(request, exception):
+    # we add the path to the the 404.html file
+    # here. The name of our HTML file is 404.html
+    return render(request, 'error_404.html')

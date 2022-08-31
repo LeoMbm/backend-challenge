@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="bg-light p-5 rounded">
-    {% if user.is_authenticated %}
-
-    <h1>Hello {{ user.username }} !</h1>
-    {% endif %}
+    <h1>Hello {% if user.is_authenticated %} {{ user.username }}{% endif %}!</h1>
+    {% if not user.account_active and user.is_authenticated %} <h3>Please verify your account</h3>{% endif %}
     <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
     <a class="btn btn-lg btn-primary" href="/docs/5.0/components/navbar/" role="button">View navbar docs »</a>
   </div>

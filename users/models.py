@@ -12,6 +12,7 @@ class App_User(AbstractUser, PermissionsMixin):
     slug = models.SlugField(max_length=30, unique=True)
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(max_length=255, unique=True)
+    account_active = models.BooleanField(default=False)
 
     def __str__(self):
         return self.email

@@ -19,5 +19,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
-    # path('', include('django.contrib.auth.urls')),
+    path('api/', include('django.contrib.auth.urls')),
 ]
+
+handler404 = 'users.views.error_404_view'
