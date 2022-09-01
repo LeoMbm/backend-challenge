@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="bg-light p-5 rounded">
-    <h1>Hello {% if user.is_authenticated %} {{ user.username }}{% endif %}!</h1>
-{#    {% if not user.account_active and user.is_authenticated %} <h3>Please verify your account</h3>{% endif %}#}
-    <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
-    <a class="btn btn-lg btn-primary" href="/docs/5.0/components/navbar/" role="button">View navbar docs »</a>
-  </div>
+    <div class="bg-light p-5 rounded">
+        <h1>Hello {% if user.is_authenticated %} {{ user.username }}{% endif %}!</h1>
+        {#    {% if not user.account_active and user.is_authenticated %} <h3>Please verify your account</h3>{% endif %}#}
+        <p class="lead">Welcome to IPview, here is your IP address: {{ message }}<br>It's a quick exercise to illustrate
+            what a backend developer junior can do.</p>
+        {% if address.status == 'success' %}
+            <p>Country : {{ address.country }}</p>
+            <p>City : {{ address.city }}</p>
+            <p>ZIP : {{ address.zip }}</p>
+            <p>Region : {{ address.regionName }}</p>
+            <p>Timezone : {{ address.timezone }}</p>
+            <p>Operator : {{ address.isp }}, {{ address.org }} {{ address.as }}</p>
+            <p>Longitude : {{ address.lon }}</p>
+            <p>Latitude : {{ address.lat }}</p>
+        {% endif %}
+
+        <a class="btn btn-lg btn-primary" href="https://github.com/LeoMbm/backend-challenge" role="button">GitHub
+            Repository »</a>
+    </div>
 {% endblock %}
 
 {#TODO: ADD CONFIRMATION EMAIL OR SMS #}
