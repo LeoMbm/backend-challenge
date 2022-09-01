@@ -3,11 +3,20 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
 from users.forms import RegistrationForm, LoginForm
+import requests
 
 
 # Create your views here.
 def getHome(request):
-    ctx = {'message': "home"}
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    res = requests.get(f'http://ip-api.com/json/{ip}').json()
+    print(res)
+    ctx = {'message': ip,
+           'address': res}
     return render(request, 'home.html', ctx)
 
 

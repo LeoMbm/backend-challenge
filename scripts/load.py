@@ -12,7 +12,5 @@ def run():
             pass
         else:
             Logs.objects.create(id=r[0], ip=r[1],country=r[2], date=r[3])
-            # # for x in Logs.objects.get(id):
-            # #
             # Countries.objects.create(country=r[2], ip_id=r[0])
         count = count + 1
